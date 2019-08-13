@@ -47,6 +47,6 @@ public class SkuFullReductionEntity implements Serializable {
 	 * 是否参与其他优惠
 	 */
 	@ApiModelProperty(name = "addOther",value = "是否参与其他优惠")
-	private Integer addOther;
+	private BigDecimal addOther;
 
 }

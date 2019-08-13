@@ -1,2 +1,52 @@
 server:
   port: 88
+
+# routes 规则
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: gulimall-pms_route
+          # 负载均衡到这个位置
+          uri: lb://gulimall-pms
+          # 这个路径下所有请求
+          predicates:
+            - Path=/pms/**
+        - id: gulimall-oms_route
+          uri: lb://gulimall-oms
+          predicates:
+            - Path=/oms/**
+
+        - id: gulimall-sms_route
+          uri: lb://gulimall-sms
+          predicates:
+            - Path=/sms/**
+
+        - id: gulimall-ums_route
+          uri: lb://gulimall-ums
+          predicates:
+              - Path=/ums/**
+
+        - id: gulimall-wms_route
+          uri: lb://gulimall-wms
+          predicates:
+              - Path=/wms/**
+
+#      globalcors:
+#        cors-configurations:
+#          '[/**]':
+#            allowedOrigins: "*"
+#            allowedMethods:
+#              - "*"
+#            allowCredentials: true
+#        - id: world_route  #规则名字
+#          uri: lb://gulimall-pms #负载 均衡
+#          predicates:  # 满足条件
+#            - Path=/world  #所有world请求都转到着
+#        - id: hello_route
+#          uri: lb://gulimall-oms
+#          predicates:
+#            - Path=/hello
+#          filters:
+#            - AddResponseHeader=ceshi,ceshi
+

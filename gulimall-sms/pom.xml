@@ -12,14 +12,21 @@
     <artifactId>gulimall-sms</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>gulimall-sms</name>
-    <description>Demo project for Spring Boot</description>
+    <description>营销系统</description>
 
     <properties>
         <java.version>1.8</java.version>
         <spring-cloud.version>Greenwich.SR2</spring-cloud.version>
+
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.46</version>
+        </dependency>
         <dependency>
             <groupId>com.atguigu</groupId>
             <artifactId>gulimall-core</artifactId>
