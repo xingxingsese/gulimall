@@ -15,6 +15,27 @@
         <result property="productUnit" column="product_unit"/>
         <result property="productCount" column="product_count"/>
     </resultMap>
+    <!--我们要为自定义的类型编写结果集映射-->
+    <resultMap type="com.atguigu.gulimall.pms.vo.CategoryWithChildrensVo" id="categoryWithChildrenVo">
+        <result property="catId" column="cat_id"/>
+        <result property="name" column="name"/>
+        <result property="parentCid" column="parent_cid"/>
+        <result property="catLevel" column="cat_level"/>
+        <result property="showStatus" column="show_status"/>
+        <result property="sort" column="sort"/>
+        <result property="icon" column="icon"/>
+        <result property="productUnit" column="product_unit"/>
+        <result property="productCount" column="product_count"/>
+        <!--collection 一个集合属性 property 属性名字 select 调用一个查询去做事也可以调别人的 column把哪列的值传给select的方法-->
+        <collection property="subs" select="selectCategoryChildrenWithChildrens" column="cat_id">
 
+        </collection>
+    </resultMap>
 
+<!--    List<CategoryWithChildrensVo> selectCategoryChildrenWithChildrens(Integer id);-->
+
+    <!--查询某个分类的子分类-->
+    <select id="selectCategoryChildrenWithChildrens" resultMap="categoryWithChildrenVo">
+        select * from pms_category where parent_cid =#{id}
+    </select>
 </mapper>

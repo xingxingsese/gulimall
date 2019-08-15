@@ -1,5 +1,6 @@
 package com.atguigu.gulimall.pms.service.impl;
 
+import com.atguigu.gulimall.pms.vo.CategoryWithChildrensVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -64,6 +65,14 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
         List<CategoryEntity> list = categoryDao.selectList(wrapper);
 
         return list;
+    }
+    // 获取子分类的子分类
+    @Override
+    public List<CategoryWithChildrensVo> getCategoryChildrensAndSubsById(Integer id) {
+
+        List<CategoryWithChildrensVo> vos = categoryDao.selectCategoryChildrenWithChildrens(id);
+
+        return vos;
     }
 
 }

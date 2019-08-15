@@ -11,7 +11,9 @@ spring:
           uri: lb://gulimall-pms
           # 这个路径下所有请求
           predicates:
-            - Path=/pms/**
+            - Path=/pms/**,/api/index/**
+          filters:
+            - RewritePath=/api/(?<segment>.*,/$\{segment}
         - id: gulimall-oms_route
           uri: lb://gulimall-oms
           predicates:
@@ -31,6 +33,13 @@ spring:
           uri: lb://gulimall-wms
           predicates:
               - Path=/wms/**
+
+        - id: gulimall-search_route
+          uri: lb://gulimall-search
+          predicates:
+              - Path=/api/search/**
+          filters:
+              - RewritePath=/api/(?<segment>.*),/$\{segment}
 
 #      globalcors:
 #        cors-configurations:
